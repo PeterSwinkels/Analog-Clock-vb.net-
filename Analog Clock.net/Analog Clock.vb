@@ -26,7 +26,7 @@ Public Class AnalogClockControl
    Private Const CLOCK_Y As Integer = CInt(CLOCK_SIZE * 1.1)                   'Defines the clock face's vertical center in pixels.
    Private Const DEGREES_PER_RADIAN As Double = 180 / PI                       'Defines the number of degrees per radian.
    Private Const HOUR_HAND_LENGTH As Integer = CInt(CLOCK_SIZE / 1.6)          'Defines the hour hand's length.
-   Private Const LARGE_MARK_LENGTH As Integer = CInt(HOUR_HAND_LENGTH / 2.5)   'Defines the size of the marking's used to mark every third hour.
+   Private Const LARGE_MARK_LENGTH As Integer = CInt(HOUR_HAND_LENGTH / 2.5)   'Defines the size of the markings used to mark every third hour.
    Private Const MINUTE_HAND_LENGTH As Integer = CInt(HOUR_HAND_LENGTH * 1.5)  'Defines the minutes hand's length.
    Private Const SECOND_HAND_LENGTH As Integer = CInt(HOUR_HAND_LENGTH * 1.5)  'Defines the seconds hand's length.
    Private Const SMALL_MARK_LENGTH As Integer = CInt(LARGE_MARK_LENGTH / 2)    'Defines the size of the marking's used to mark the hours.
