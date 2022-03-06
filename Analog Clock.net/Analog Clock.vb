@@ -53,10 +53,26 @@ Public Class AnalogClockControl
       End Try
    End Sub
 
-   'This procedure sets this control's size.
-   Private Sub AnalogClockControl_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+   'This procedure handles the user's keystrokes.
+   Private Sub AnalogClockControl_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
       Try
-         Me.Size = New Size(CInt(CLOCK_SIZE * 2.2), CInt(CLOCK_SIZE * 2.2))
+         Dim Time As TimeStr = CurrentTime()
+
+         If e.KeyCode = Keys.Add Then
+            With Time
+               If e.Shift Then
+                  If .Hour = 11 Then .Hour = 0 Else .Hour += 1
+               Else
+                  If .Minute = 59 Then
+                     .Minute = 0
+                     If .Hour = 11 Then .Hour = 0 Else .Hour += 1
+                  Else
+                     .Minute += +1
+                  End If
+               End If
+               DrawClock(CurrentTime(, NewHour:= .Hour, NewMinute:= .Minute))
+            End With
+         End If
       Catch ExceptionO As Exception
          RaiseEvent HandleError(ExceptionO)
       End Try
@@ -80,26 +96,10 @@ Public Class AnalogClockControl
       End Try
    End Sub
 
-   'This procedure handles the user's keystrokes.
-   Private Sub AnalogClockControl_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+   'This procedure sets this control's size.
+   Private Sub AnalogClockControl_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
       Try
-         Dim Time As TimeStr = CurrentTime()
-
-         If e.KeyCode = Keys.Add Then
-            With Time
-               If e.Shift Then
-                  If .Hour = 11 Then .Hour = 0 Else .Hour += 1
-               Else
-                  If .Minute = 59 Then
-                     .Minute = 0
-                     If .Hour = 11 Then .Hour = 0 Else .Hour += 1
-                  Else
-                     .Minute += +1
-                  End If
-               End If
-               DrawClock(CurrentTime(, NewHour:= .Hour, NewMinute:= .Minute))
-            End With
-         End If
+         Me.Size = New Size(CInt(CLOCK_SIZE * 2.2), CInt(CLOCK_SIZE * 2.2))
       Catch ExceptionO As Exception
          RaiseEvent HandleError(ExceptionO)
       End Try
