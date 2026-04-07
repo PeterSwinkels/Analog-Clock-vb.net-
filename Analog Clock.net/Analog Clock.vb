@@ -38,7 +38,7 @@ Public Class AnalogClockControl
       Public Second As Integer  'Contains the second.
    End Structure
 
-   Public Event HandleError(ExceptionO As Exception)                                          'Defines the error event.
+   Public Event HandleException(ExceptionO As Exception)                                      'Defines the exception event.
    Private ControlToolTip As New ToolTip                                                       'Contains this control's tooltip.
    Private WithEvents AnalogClockTimer As New Timer With {.Enabled = True, .Interval = 1000}   'Contains the timer that powers the clock.
 
@@ -49,7 +49,7 @@ Public Class AnalogClockControl
          DrawClock(CurrentTime(Advance:=False))
          ControlToolTip.SetToolTip(Me, "Click near the face's edge or use the plus key to set the time.")
       Catch ExceptionO As Exception
-         RaiseEvent HandleError(ExceptionO)
+         RaiseEvent HandleException(ExceptionO)
       End Try
    End Sub
 
@@ -74,7 +74,7 @@ Public Class AnalogClockControl
             End With
          End If
       Catch ExceptionO As Exception
-         RaiseEvent HandleError(ExceptionO)
+         RaiseEvent HandleException(ExceptionO)
       End Try
    End Sub
 
@@ -92,7 +92,7 @@ Public Class AnalogClockControl
 
          DrawClock(CurrentTime(Advance:=False))
       Catch ExceptionO As Exception
-         RaiseEvent HandleError(ExceptionO)
+         RaiseEvent HandleException(ExceptionO)
       End Try
    End Sub
 
@@ -101,7 +101,7 @@ Public Class AnalogClockControl
       Try
          Me.Size = New Size(CInt(CLOCK_SIZE * 2.2), CInt(CLOCK_SIZE * 2.2))
       Catch ExceptionO As Exception
-         RaiseEvent HandleError(ExceptionO)
+         RaiseEvent HandleException(ExceptionO)
       End Try
    End Sub
 
@@ -110,7 +110,7 @@ Public Class AnalogClockControl
       Try
          DrawClock(CurrentTime(Advance:=True))
       Catch ExceptionO As Exception
-         RaiseEvent HandleError(ExceptionO)
+         RaiseEvent HandleException(ExceptionO)
       End Try
    End Sub
 
@@ -141,7 +141,7 @@ Public Class AnalogClockControl
 
          Return Time
       Catch ExceptionO As Exception
-         RaiseEvent HandleError(ExceptionO)
+         RaiseEvent HandleException(ExceptionO)
       End Try
 
       Return Nothing
@@ -193,7 +193,7 @@ Public Class AnalogClockControl
             .DrawEllipse(Pens.White, CInt(CLOCK_X - (HAND_NUT_SIZE / 2)), CInt(CLOCK_Y - (HAND_NUT_SIZE / 2)), HAND_NUT_SIZE, HAND_NUT_SIZE)
          End With
       Catch ExceptionO As Exception
-         RaiseEvent HandleError(ExceptionO)
+         RaiseEvent HandleException(ExceptionO)
       End Try
    End Sub
 
@@ -218,7 +218,7 @@ Public Class AnalogClockControl
 
          Return CInt(Angle * (180 / PI))
       Catch ExceptionO As Exception
-         RaiseEvent HandleError(ExceptionO)
+         RaiseEvent HandleException(ExceptionO)
       End Try
 
       Return Nothing

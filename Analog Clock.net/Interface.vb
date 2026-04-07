@@ -28,12 +28,12 @@ Public Class InterfaceWindow
 
          Me.ClientSize = New Size(AnalogClock.Width, AnalogClock.Height + Me.MenuBar.Height)
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
-   'This procedure handles any errors that occur.
-   Private Sub HandleError(ExceptionO As Exception) Handles AnalogClock.HandleError
+   'This procedure display any exceptions that occur.
+   Private Sub DisplayException(ExceptionO As Exception) Handles AnalogClock.HandleException
       Try
          MessageBox.Show(ExceptionO.Message, My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error)
       Catch
@@ -46,7 +46,7 @@ Public Class InterfaceWindow
       Try
          MessageBox.Show(My.Application.Info.Description, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -55,7 +55,7 @@ Public Class InterfaceWindow
       Try
          Me.Close()
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 End Class
